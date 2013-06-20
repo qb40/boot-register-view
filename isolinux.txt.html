@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML LANG="en">
+<HEAD>
+<META http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<TITLE>SfR Fresh: [syslinux-3.80.tar.gz] Member isolinux.txt (syslinux-3.80/doc/iso ...</TITLE>
+<link rel="stylesheet" type="text/css" href="/fresh/highlight.css">
+</HEAD>
+<BODY class="hl"><H2><IMG SRC="/fresh/warix/forest1.gif" ALT=""> "<A HREF="/fresh/softarch.html">SfR Fresh</A>" - the SfR Freeware/Shareware Archive <IMG SRC="/fresh/warix/forest2.gif" ALT=""></H2>
+<H3>Member "syslinux-3.80/doc/isolinux.txt" of archive <A HREF="/linux/misc/syslinux-3.80.tar.gz/">syslinux-3.80.tar.gz</A>:</H3>
+<HR>
+<FONT SIZE=-1>
+As a special service "SfR Fresh" has tried to format the requested source page into HTML format using  source code syntax highlighting with prefixed line numbers.
+Alternatively you can here <A HREF="/linux/misc/syslinux-3.80.tar.gz:t/syslinux-3.80/doc/isolinux.txt">view</A> or <A HREF="/linux/misc/syslinux-3.80.tar.gz:b/syslinux-3.80/doc/isolinux.txt">download</A> the uninterpreted source code file.
+That can be also achieved for any archive member file by clicking within an archive contents listing on the first character of the file(path) respectively on the according byte size field.
+</FONT>
+<HR>
+<pre class="hl">
+<span class="hl line">    1 </span>                               ISOLINUX
+<span class="hl line">    2 </span>
+<span class="hl line">    3 </span>       A bootloader for Linux using ISO 9660/El Torito CD-ROMs
+<span class="hl line">    4 </span>
+<span class="hl line">    5 </span>       Copyright 1994-2008 H. Peter Anvin - All Rights Reserved
+<span class="hl line">    6 </span>
+<span class="hl line">    7 </span>This program is provided under the terms of the GNU General Public
+<span class="hl line">    8 </span>License, version 2 or, at your option, any later version.  There is no
+<span class="hl line">    9 </span>warranty, neither expressed nor implied, to the function of this
+<span class="hl line">   10 </span>program.  Please see the included file COPYING for details.
+<span class="hl line">   11 </span>
+<span class="hl line">   12 </span>----------------------------------------------------------------------
+<span class="hl line">   13 </span>
+<span class="hl line">   14 </span>ISOLINUX is a boot loader for Linux/i386 that operates off ISO 9660/El
+<span class="hl line">   15 </span>Torito CD-ROMs in &quot;no emulation&quot; mode.  This avoids the need to create
+<span class="hl line">   16 </span>an &quot;emulation disk image&quot; with limited space (for &quot;floppy emulation&quot;)
+<span class="hl line">   17 </span>or compatibility problems (for &quot;hard disk emulation&quot;.)
+<span class="hl line">   18 </span>
+<span class="hl line">   19 </span>This documentation isn't here yet, but here is enough that you should
+<span class="hl line">   20 </span>be able to test it out:
+<span class="hl line">   21 </span>
+<span class="hl line">   22 </span>Make sure you have a recent enough version of mkisofs.  I recommend
+<span class="hl line">   23 </span>mkisofs 1.13 (distributed with cdrecord 1.9), but 1.12 might work as
+<span class="hl line">   24 </span>well (not tested.)
+<span class="hl line">   25 </span>
+<span class="hl line">   26 </span>To create an image, create a directory called &quot;isolinux&quot; (or, if you
+<span class="hl line">   27 </span>prefer, &quot;boot/isolinux&quot;) underneath the root directory of your ISO
+<span class="hl line">   28 </span>image master file tree.  Copy isolinux.bin, a config file called
+<span class="hl line">   29 </span>&quot;isolinux.cfg&quot; (see syslinux.txt for details on the configuration
+<span class="hl line">   30 </span>file), and all necessary files (kernels, initrd, display files, etc.)
+<span class="hl line">   31 </span>into this directory, then use the following command to create your ISO
+<span class="hl line">   32 </span>image (add additional options as appropriate, such as -J or -R):
+<span class="hl line">   33 </span>
+<span class="hl line">   34 </span>	mkisofs -o &lt;isoimage&gt; \
+<span class="hl line">   35 </span>		-b isolinux/isolinux.bin -c isolinux/boot.cat \
+<span class="hl line">   36 </span>		-no-emul-boot -boot-load-size 4 -boot-info-table \
+<span class="hl line">   37 </span>		&lt;root-of-iso-tree&gt;
+<span class="hl line">   38 </span>
+<span class="hl line">   39 </span>(If you named the directory boot/isolinux that should of course be
+<span class="hl line">   40 </span>-b boot/isolinux/isolinux.bin -c boot/isolinux/boot.cat.)
+<span class="hl line">   41 </span>
+<span class="hl line">   42 </span>ISOLINUX resolves pathnames the following way:
+<span class="hl line">   43 </span>
+<span class="hl line">   44 </span>- A pathname consists of names separated by slashes, Unix-style.
+<span class="hl line">   45 </span>- A leading / means it searches from the root directory; otherwise the
+<span class="hl line">   46 </span>  search is from the isolinux directory (think of this as the &quot;current
+<span class="hl line">   47 </span>  directory&quot;.)
+<span class="hl line">   48 </span>- . and .. in pathname searches are not supported.
+<span class="hl line">   49 </span>- The maximum length of any pathname is 255 characters.
+<span class="hl line">   50 </span>
+<span class="hl line">   51 </span>Note that ISOLINUX only uses the &quot;plain&quot; ISO 9660 filenames, i.e. it
+<span class="hl line">   52 </span>does not support Rock Ridge or Joliet filenames.  It can still be used
+<span class="hl line">   53 </span>on a disk which uses Rock Ridge and/or Joliet extensions, of course.
+<span class="hl line">   54 </span>Under Linux, you can verify the plain filenames by mounting with the
+<span class="hl line">   55 </span>&quot;-o norock,nojoliet&quot; option to the mount command.  Note, however, that
+<span class="hl line">   56 </span>ISOLINUX does support &quot;long&quot; (level 2) ISO 9660 plain filenames, so if
+<span class="hl line">   57 </span>compatibility with short-names-only operating systems like MS-DOS is
+<span class="hl line">   58 </span>not an issue, you can use the &quot;-l&quot; or &quot;-iso-level 2&quot; option to mkisofs
+<span class="hl line">   59 </span>to generate long (up to 31 characters) plain filenames.
+<span class="hl line">   60 </span>
+<span class="hl line">   61 </span>ISOLINUX does not support discontiguous files, interleaved mode, or
+<span class="hl line">   62 </span>logical block and sector sizes other than 2048.  This should normally
+<span class="hl line">   63 </span>not be a problem.
+<span class="hl line">   64 </span>
+<span class="hl line">   65 </span>ISOLINUX is by default built in two versions, one version with extra
+<span class="hl line">   66 </span>debugging messages enabled.  If you are having problems with ISOLINUX,
+<span class="hl line">   67 </span>I would greatly appreciate if you could try out the debugging version
+<span class="hl line">   68 </span>(isolinux-debug.bin) and let me know what it reports.  The debugging
+<span class="hl line">   69 </span>version does not include hybrid mode support (see below.)
+<span class="hl line">   70 </span>
+<span class="hl line">   71 </span>
+<span class="hl line">   72 </span>      ++++ NOTE ON THE CONFIG FILE DIRECTORY ++++
+<span class="hl line">   73 </span>
+<span class="hl line">   74 </span>ISOLINUX will search for the config file directory in the order
+<span class="hl line">   75 </span>/boot/isolinux, /isolinux, /.  The first directory that exists is
+<span class="hl line">   76 </span>used, even if it contains no files.  Therefore, please make sure that
+<span class="hl line">   77 </span>these directories don't exist if you don't want ISOLINUX to use them.
+<span class="hl line">   78 </span>
+<span class="hl line">   79 </span>
+<span class="hl line">   80 </span>      ++++ HYBRID CD-ROM/HARD DISK MODE ++++
+<span class="hl line">   81 </span>
+<span class="hl line">   82 </span>Starting in version 3.72, ISOLINUX supports a &quot;hybrid mode&quot; which can
+<span class="hl line">   83 </span>be booted from either CD-ROM or from a device which BIOS considers a
+<span class="hl line">   84 </span>hard disk or ZIP disk, e.g. a USB key or similar.
+<span class="hl line">   85 </span>
+<span class="hl line">   86 </span>To enable this mode, the .iso image should be postprocessed with the
+<span class="hl line">   87 </span>&quot;isohybrid&quot; script from the utils directory:
+<span class="hl line">   88 </span>
+<span class="hl line">   89 </span>	isohybrid filename.iso
+<span class="hl line">   90 </span>
+<span class="hl line">   91 </span>This script creates the necessary additional information to be able to
+<span class="hl line">   92 </span>boot in hybrid mode.  It also pads out the image to an even multiple
+<span class="hl line">   93 </span>of 1 MB.
+<span class="hl line">   94 </span>
+<span class="hl line">   95 </span>This image can then be copied using any raw disk writing tool (on Unix
+<span class="hl line">   96 </span>systems, typically &quot;dd&quot; or &quot;cat&quot;) to a USB disk, or written to a
+<span class="hl line">   97 </span>CD-ROM using standard CD burning tools.
+<span class="hl line">   98 </span>
+<span class="hl line">   99 </span>The ISO 9660 filesystem is encapsulated in a partition (which starts
+<span class="hl line">  100 </span>at offset zero, which may confuse some systems.)  This makes it
+<span class="hl line">  101 </span>possible for the operating system, once booted, to use the remainder
+<span class="hl line">  102 </span>of the device for persistent storage by creating a second partition.
+<span class="hl line">  103 </span>
+<span class="hl line">  104 </span>
+<span class="hl line">  105 </span>      ++++ BOOTING DOS (OR OTHER SIMILAR OPERATING SYSTEMS) ++++
+<span class="hl line">  106 </span>
+<span class="hl line">  107 </span>WARNING: This feature depends on BIOS functionality which is
+<span class="hl line">  108 </span>apparently broken in a very large number of BIOSes.  Therefore, this
+<span class="hl line">  109 </span>may not work on any particular system.  No workaround is possible; if
+<span class="hl line">  110 </span>you find that it doesn't work please complain to your vendor and
+<span class="hl line">  111 </span>indicate that &quot;BIOS INT 13h AX=4C00h fails.&quot;
+<span class="hl line">  112 </span>
+<span class="hl line">  113 </span>To boot DOS, or other real-mode operating systems (protected-mode
+<span class="hl line">  114 </span>operating systems may or may not work correctly), using ISOLINUX, you
+<span class="hl line">  115 </span>need to prepare a disk image (usually a floppy image, but a hard disk
+<span class="hl line">  116 </span>image can be used on *most* systems) with the relevant operating
+<span class="hl line">  117 </span>system.  This file should be included on the CD-ROM in the /isolinux
+<span class="hl line">  118 </span>directory, and have a .img extension.  The &quot;.img&quot; extension does not
+<span class="hl line">  119 </span>have to be specified on the command line, but has to be explicitly
+<span class="hl line">  120 </span>specified if used in a &quot;kernel&quot; statement in isolinux.cfg.
+<span class="hl line">  121 </span>
+<span class="hl line">  122 </span>For a floppy image, the size of the image should be exactly one of the
+<span class="hl line">  123 </span>following:
+<span class="hl line">  124 </span>
+<span class="hl line">  125 </span>	1,228,800 bytes		- For a 1200K floppy image
+<span class="hl line">  126 </span>	1,474,560 bytes		- For a 1440K floppy image
+<span class="hl line">  127 </span>	2,949,120 bytes		- For a 2880K floppy image
+<span class="hl line">  128 </span>
+<span class="hl line">  129 </span>Any other size is assumed to be a hard disk image.  In order to work
+<span class="hl line">  130 </span>on as many systems as possible, a hard disk image should have exactly
+<span class="hl line">  131 </span>one partition, marked active, that covers the entire size of the disk
+<span class="hl line">  132 </span>image file.  Even so, hard disk images are not supported on all
+<span class="hl line">  133 </span>BIOSes.</PRE></BODY></HTML><!--HTML generated by highlight, http://www.andre-simon.de/-->
